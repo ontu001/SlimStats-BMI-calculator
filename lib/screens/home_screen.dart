@@ -7,6 +7,8 @@ import 'package:slimstats_bmi_calculator/widgets/gender.dart';
 import 'package:slimstats_bmi_calculator/widgets/reusable_cart.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
+enum gEnder { male, female, none }
+
 class HomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -16,6 +18,9 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   double _value = 40.0;
+ 
+  gEnder selecetedGender = gEnder.none;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +33,6 @@ class HomeScreenState extends State<HomeScreen> {
         children: [
           //mesurement area
           Expanded(
-            
             //gender, age, weight
             child: Row(
               children: [
@@ -47,16 +51,28 @@ class HomeScreenState extends State<HomeScreen> {
                                       gender: "MALE",
                                       imagePath: "asset/icon/male.png",
                                     ),
-                                    color: kinactiveColor,
-                                    ontap: () {})),
+                                    color: selecetedGender == gEnder.male
+                                        ? kActiveColor
+                                        : kinactiveColor,
+                                    ontap: () {
+                                      setState(() {
+                                        selecetedGender = gEnder.male;
+                                      });
+                                    })),
                             Expanded(
                                 child: reusableCart(
                                     cardChild: Gender(
                                       gender: "FEMALE",
                                       imagePath: "asset/icon/female.png",
                                     ),
-                                    color: kinactiveColor,
-                                    ontap: () {})),
+                                    color: selecetedGender == gEnder.female
+                                        ? kActiveColor
+                                        : kinactiveColor,
+                                    ontap: () {
+                                      setState(() {
+                                        selecetedGender = gEnder.female;
+                                      });
+                                    })),
                           ],
                         ),
                       ),
@@ -95,8 +111,8 @@ class HomeScreenState extends State<HomeScreen> {
           //====button
           BottomButton(
             buttonText: "CALCULATE",
-            imagePath: "asste/icon/calculate.png",
-            ontap: (){},
+            imagePath: "asset/icon/calculate.png",
+            ontap: () {},
           ),
         ],
       ),

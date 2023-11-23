@@ -5,7 +5,8 @@ class BottomButton extends StatelessWidget {
   final String buttonText;
   final String imagePath;
   final VoidCallback ontap;
-  BottomButton({required this.buttonText, required this.imagePath, required this.ontap});
+  BottomButton(
+      {required this.buttonText, required this.imagePath, required this.ontap});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +23,12 @@ class BottomButton extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: ontap,
-            child: CircleAvatar(
-              radius: 37.0,
-              backgroundColor: const Color.fromARGB(255, 255, 94, 0),
-              backgroundImage: AssetImage(imagePath),
+            child: Container(
+              height: 80,
+              width: 80,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50), color: kActiveColor),
+              child: Image.asset(imagePath),
             ),
           ),
           SizedBox(
