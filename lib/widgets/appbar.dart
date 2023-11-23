@@ -4,15 +4,11 @@ import 'package:slimstats_bmi_calculator/const%20file/const.dart';
 class appBar extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 7.0),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Icon(Icons.menu,color: kgreyColor,),
-            Text("SLIMSTATS BMI CALCULATOR",style: TextStyle(fontSize: 16.0,color: Color(0xFFc2cef4)),),
-            Icon(Icons.notification_add_outlined,color: kgreyColor,),
-          ]),
-        );
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Icon(Icons.menu,color: kgreyColor,),
+                Text("SLIMSTATS BMI CALCULATOR",style: TextStyle(fontSize: 16.0,color: Color(0xFFc2cef4)),),
+                Icon(Icons.notification_add_outlined,color: kgreyColor,),
+              ]);
   }
   
 
