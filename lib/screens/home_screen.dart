@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:slimstats_bmi_calculator/const%20file/const.dart';
 import 'package:slimstats_bmi_calculator/widgets/appbar.dart';
+import 'package:slimstats_bmi_calculator/widgets/bottom_button.dart';
 import 'package:slimstats_bmi_calculator/widgets/gender.dart';
 import 'package:slimstats_bmi_calculator/widgets/reusable_cart.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -13,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
+  double _value = 40.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +28,7 @@ class HomeScreenState extends State<HomeScreen> {
         children: [
           //mesurement area
           Expanded(
+            
             //gender, age, weight
             child: Row(
               children: [
@@ -40,15 +44,17 @@ class HomeScreenState extends State<HomeScreen> {
                             Expanded(
                                 child: reusableCart(
                                     cardChild: Gender(
-                                        gender: "MALE",
-                                        imagePath: "asset/icon/male.png",),
+                                      gender: "MALE",
+                                      imagePath: "asset/icon/male.png",
+                                    ),
                                     color: kinactiveColor,
                                     ontap: () {})),
                             Expanded(
                                 child: reusableCart(
                                     cardChild: Gender(
-                                        gender: "FEMALE",
-                                        imagePath: "asset/icon/female.png",),
+                                      gender: "FEMALE",
+                                      imagePath: "asset/icon/female.png",
+                                    ),
                                     color: kinactiveColor,
                                     ontap: () {})),
                           ],
@@ -64,12 +70,34 @@ class HomeScreenState extends State<HomeScreen> {
 
                 //=============height
 
-                Expanded(child: reusableCart(color: kinactiveColor))
+                Expanded(
+                    child: reusableCart(
+                  color: kinactiveColor,
+                  cardChild: SfSlider.vertical(
+                    min: 0.0,
+                    max: 100.0,
+                    value: _value,
+                    showTicks: true,
+                    showLabels: true,
+                    enableTooltip: true,
+                    minorTicksPerInterval: 1,
+                    onChanged: (dynamic value) {
+                      setState(() {
+                        _value = value;
+                      });
+                    },
+                  ),
+                ))
               ],
             ),
           ),
 
           //====button
+          BottomButton(
+            buttonText: "CALCULATE",
+            imagePath: "asste/icon/calculate.png",
+            ontap: (){},
+          ),
         ],
       ),
     );

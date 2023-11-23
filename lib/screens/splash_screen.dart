@@ -13,7 +13,7 @@ class SplahScreen extends StatefulWidget {
 class SplahScreenState extends State<SplahScreen> {
   @override
   void initState() {
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 1), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => HomeScreen()));
     });
