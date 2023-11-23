@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:slimstats_bmi_calculator/const%20file/const.dart';
 import 'package:slimstats_bmi_calculator/widgets/appbar.dart';
 import 'package:slimstats_bmi_calculator/widgets/bottom_button.dart';
 import 'package:slimstats_bmi_calculator/widgets/gender.dart';
 import 'package:slimstats_bmi_calculator/widgets/reusable_cart.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
-
-enum gEnder { male, female, none }
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -17,9 +13,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  double _value = 40.0;
- 
-  gEnder selecetedGender = gEnder.none;
+  double _value = 140.0;
+  Color mselectedColor = kinactiveColor;
+  Color femselectedColor = kinactiveColor;
+
+  void updateColor(String gndr) {
+    if (gndr == "male") {
+      mselectedColor = kActiveColor;
+      femselectedColor = kinactiveColor;
+    }
+    if (gndr == "female") {
+      femselectedColor = kActiveColor;
+      mselectedColor = kinactiveColor;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,12 +58,10 @@ class HomeScreenState extends State<HomeScreen> {
                                       gender: "MALE",
                                       imagePath: "asset/icon/male.png",
                                     ),
-                                    color: selecetedGender == gEnder.male
-                                        ? kActiveColor
-                                        : kinactiveColor,
+                                    color: mselectedColor,
                                     ontap: () {
                                       setState(() {
-                                        selecetedGender = gEnder.male;
+                                        updateColor("male");
                                       });
                                     })),
                             Expanded(
@@ -65,12 +70,10 @@ class HomeScreenState extends State<HomeScreen> {
                                       gender: "FEMALE",
                                       imagePath: "asset/icon/female.png",
                                     ),
-                                    color: selecetedGender == gEnder.female
-                                        ? kActiveColor
-                                        : kinactiveColor,
+                                    color: femselectedColor,
                                     ontap: () {
                                       setState(() {
-                                        selecetedGender = gEnder.female;
+                                        updateColor("female");
                                       });
                                     })),
                           ],
@@ -89,19 +92,18 @@ class HomeScreenState extends State<HomeScreen> {
                 Expanded(
                     child: reusableCart(
                   color: kinactiveColor,
-                  cardChild: SfSlider.vertical(
-                    min: 0.0,
-                    max: 100.0,
-                    value: _value,
-                    showTicks: true,
-                    showLabels: true,
-                    enableTooltip: true,
-                    minorTicksPerInterval: 1,
-                    onChanged: (dynamic value) {
-                      setState(() {
-                        _value = value;
-                      });
-                    },
+                  cardChild: RotatedBox(
+                    quarterTurns: 3,
+                    child: Slider(
+                        value: _value,
+                        min: 120,
+                        max: 220,
+                        activeColor: kActiveColor,
+                        onChanged: (value) {
+                          setState(() {
+                            _value = value;
+                          });
+                        }),
                   ),
                 ))
               ],
