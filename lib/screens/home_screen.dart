@@ -5,6 +5,7 @@ import 'package:slimstats_bmi_calculator/widgets/bottom_button.dart';
 import 'package:slimstats_bmi_calculator/widgets/gender.dart';
 import 'package:slimstats_bmi_calculator/widgets/height_slider.dart';
 import 'package:slimstats_bmi_calculator/widgets/reusable_cart.dart';
+import 'package:slimstats_bmi_calculator/widgets/mesurement.dart';
 
 enum gEnder { male, female, none }
 
@@ -17,6 +18,8 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   int _currentValue = 180;
+  int _currentWeight = 55;
+  int _currentAge = 20;
   gEnder selectedGender = gEnder.none;
 
   @override
@@ -39,8 +42,25 @@ class HomeScreenState extends State<HomeScreen> {
                   flex: 3,
                   child: Column(
                     children: [
-                      //age===
-                      Expanded(child: reusableCart(color: kinactiveColor)),
+                      //Weight===
+                      Expanded(
+                          child: reusableCart(
+                        color: kinactiveColor,
+                        cardChild: InputValue(
+                          imagepath: "asset/icon/weight.png",
+                          inputvalue: _currentWeight,
+                          minusOnPressed: () {
+                            setState(() {
+                              _currentWeight--;
+                            });
+                          },
+                          plusOnPressed: () {
+                            setState(() {
+                              _currentWeight++;
+                            });
+                          },
+                        ),
+                      )),
 
 //gender====
 
@@ -79,7 +99,25 @@ class HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
 
-                      Expanded(child: reusableCart(color: kinactiveColor)),
+                      //age===========
+
+                      Expanded(
+                          child: reusableCart(
+                        color: kinactiveColor,
+                        cardChild: InputValue(
+                            imagepath: "asset/icon/age.png",
+                            inputvalue: _currentAge,
+                            plusOnPressed: () {
+                              setState(() {
+                                _currentAge++;
+                              });
+                            },
+                            minusOnPressed: (){
+                              setState(() {
+                                _currentAge--;
+                              });
+                            }),
+                      )),
                     ],
                   ),
                 ),
@@ -90,23 +128,22 @@ class HomeScreenState extends State<HomeScreen> {
                     child: reusableCart(
                   color: kinactiveColor,
                   cardChild: Column(children: [
-                    Text(
-                      "HEIGHT",
-                      style: TextStyle(fontSize: 14.0,color: kgreyColor),
-                    ),
+                    Image.asset("asset/icon/height.png"),
                     Row(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  textBaseline: TextBaseline.alphabetic,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
                       children: [
                         Text(
                           "$_currentValue",
                           style: kNumberTextStyle,
                         ),
-                        Text("cm",style: TextStyle(color: kgreyColor),)
+                        Text(
+                          "cm",
+                          style: TextStyle(color: kgreyColor),
+                        )
                       ],
                     ),
-                   
                     Expanded(
                       child: HeightSlider(
                         onChanged: (double newvalue) {
