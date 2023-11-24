@@ -12,9 +12,10 @@ class reusableCart extends StatelessWidget {
       onTap: ontap,
       child: Container(
         margin: EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0), color: color),
-            child: cardChild,
+        child: cardChild,
       ),
     );
   }

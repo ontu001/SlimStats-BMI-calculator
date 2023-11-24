@@ -3,7 +3,10 @@ import 'package:slimstats_bmi_calculator/const%20file/const.dart';
 import 'package:slimstats_bmi_calculator/widgets/appbar.dart';
 import 'package:slimstats_bmi_calculator/widgets/bottom_button.dart';
 import 'package:slimstats_bmi_calculator/widgets/gender.dart';
+import 'package:slimstats_bmi_calculator/widgets/height_slider.dart';
 import 'package:slimstats_bmi_calculator/widgets/reusable_cart.dart';
+
+enum gEnder { male, female, none }
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -13,20 +16,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  double _value = 140.0;
-  Color mselectedColor = kinactiveColor;
-  Color femselectedColor = kinactiveColor;
-
-  void updateColor(String gndr) {
-    if (gndr == "male") {
-      mselectedColor = kActiveColor;
-      femselectedColor = kinactiveColor;
-    }
-    if (gndr == "female") {
-      femselectedColor = kActiveColor;
-      mselectedColor = kinactiveColor;
-    }
-  }
+  int _currentValue = 180;
+  gEnder selectedGender = gEnder.none;
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +36,14 @@ class HomeScreenState extends State<HomeScreen> {
               children: [
                 //gender age weight
                 Expanded(
-                  flex: 4,
+                  flex: 3,
                   child: Column(
                     children: [
+                      //age===
+                      Expanded(child: reusableCart(color: kinactiveColor)),
+
 //gender====
+
                       Expanded(
                         child: Row(
                           children: [
@@ -58,10 +53,12 @@ class HomeScreenState extends State<HomeScreen> {
                                       gender: "MALE",
                                       imagePath: "asset/icon/male.png",
                                     ),
-                                    color: mselectedColor,
+                                    color: selectedGender == gEnder.male
+                                        ? kActiveColor
+                                        : kinactiveColor,
                                     ontap: () {
                                       setState(() {
-                                        updateColor("male");
+                                        selectedGender = gEnder.male;
                                       });
                                     })),
                             Expanded(
@@ -70,19 +67,19 @@ class HomeScreenState extends State<HomeScreen> {
                                       gender: "FEMALE",
                                       imagePath: "asset/icon/female.png",
                                     ),
-                                    color: femselectedColor,
+                                    color: selectedGender == gEnder.female
+                                        ? kActiveColor
+                                        : kinactiveColor,
                                     ontap: () {
                                       setState(() {
-                                        updateColor("female");
+                                        selectedGender = gEnder.female;
                                       });
                                     })),
                           ],
                         ),
                       ),
 
-                      //age===
                       Expanded(child: reusableCart(color: kinactiveColor)),
-                      Expanded(child: reusableCart(color: kinactiveColor))
                     ],
                   ),
                 ),
@@ -92,19 +89,35 @@ class HomeScreenState extends State<HomeScreen> {
                 Expanded(
                     child: reusableCart(
                   color: kinactiveColor,
-                  cardChild: RotatedBox(
-                    quarterTurns: 3,
-                    child: Slider(
-                        value: _value,
-                        min: 120,
-                        max: 220,
-                        activeColor: kActiveColor,
-                        onChanged: (value) {
+                  cardChild: Column(children: [
+                    Text(
+                      "HEIGHT",
+                      style: TextStyle(fontSize: 14.0,color: kgreyColor),
+                    ),
+                    Row(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Text(
+                          "$_currentValue",
+                          style: kNumberTextStyle,
+                        ),
+                        Text("cm",style: TextStyle(color: kgreyColor),)
+                      ],
+                    ),
+                   
+                    Expanded(
+                      child: HeightSlider(
+                        onChanged: (double newvalue) {
                           setState(() {
-                            _value = value;
+                            _currentValue = newvalue.round();
                           });
-                        }),
-                  ),
+                        },
+                        currentValue: _currentValue,
+                      ),
+                    )
+                  ]),
                 ))
               ],
             ),
