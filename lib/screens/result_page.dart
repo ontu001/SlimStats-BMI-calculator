@@ -6,7 +6,16 @@ import 'package:slimstats_bmi_calculator/widgets/reusable_cart.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class Result extends StatelessWidget {
-  
+  final double bmi;
+  final String condition;
+  final String suggestion;
+  final String conditionImage;
+  final String suggestionImage;
+  final int age;
+  final int weight;
+  final int height;
+
+  Result({ required this.bmi, required this.condition, required this.conditionImage, required this.suggestionImage, required this.age, required this.weight, required this.height, required this.suggestion});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +30,11 @@ class Result extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 20, top: 10, bottom: 10),
             child: Text(
-              "YOUR CALCULATED BMI",
+              condition,
               style: kcommonTExtStyle,
             ),
           ),
+          Text("you are $age years old and Your height is $height your weight is $weight"),
           Expanded(
               child: reusableCart(
             color: kinactiveColor,
@@ -32,9 +42,9 @@ class Result extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 20.0),
               child: Column(
                 children: [
-                  Image.asset("asset/icon/normal.png"),
+                  Image.asset(conditionImage),
                   Text(
-                    "NORMAL",
+                    condition,
                     style: kcommonTExtStyle,
                   ),
                   SizedBox(
@@ -44,10 +54,10 @@ class Result extends StatelessWidget {
                     radius: 120.0,
                     lineWidth: 20.0,
                     animation: true,
-                    percent: 24 / 100,
+                    percent: bmi / 100,
                     backgroundColor: kgreyColor,
                     center: new Text(
-                      "70.0%",
+                      bmi.toStringAsFixed(1),
                       style: new TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20.0),
                     ),
@@ -59,9 +69,9 @@ class Result extends StatelessWidget {
                   ),
 
                   //=====advice
-                  Image.asset("asset/icon/exercise.png"),
+                  Image.asset(suggestionImage),
                   Text(
-                      "Ehjgfkgwefgekwjfgwkjgfvkrjfgvrjgvejkrfgvrkjfgkrjfgkrjgfrkjgkrjg")
+                      suggestion)
                 ],
               ),
             ),

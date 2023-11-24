@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slimstats_bmi_calculator/Logic/calculate_result.dart';
 import 'package:slimstats_bmi_calculator/const%20file/const.dart';
 import 'package:slimstats_bmi_calculator/screens/result_page.dart';
 import 'package:slimstats_bmi_calculator/widgets/appbar.dart';
@@ -166,8 +167,20 @@ class HomeScreenState extends State<HomeScreen> {
             buttonText: "CALCULATE",
             imagePath: "asset/icon/calculate.png",
             ontap: () {
+               calculateBrain calculate = calculateBrain(_currentValue, _currentWeight);
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Result()));
+               
+                  context, MaterialPageRoute(builder: (context) => Result(
+
+                    age: _currentAge,
+                    height: _currentValue,
+                    weight: _currentWeight,
+                    bmi: calculate.calCulate(),
+                    condition: calculate.getCondition(),
+                    conditionImage: calculate.getConditionImage(),
+                    suggestion: calculate.getSuggestion(),
+                    suggestionImage: calculate.getSuggestionImage(),
+                  )));
             },
           ),
         ],
