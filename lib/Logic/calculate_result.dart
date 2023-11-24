@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 import 'dart:math';
 
 class calculateBrain {
@@ -53,7 +53,7 @@ class calculateBrain {
 
     }
     else{
-      return 'asset/icon/normal.png';
+      return 'asset/icon/healthy.png';
     }
 
   }

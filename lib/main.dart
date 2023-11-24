@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:slimstats_bmi_calculator/screens/splash_screen.dart';
 
+
 void main() {
   runApp(slimStats());
 }
