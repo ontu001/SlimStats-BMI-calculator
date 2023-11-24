@@ -56,7 +56,7 @@ class Result extends StatelessWidget {
                     radius: 120.0,
                     lineWidth: 20.0,
                     animation: true,
-                    percent: 24 / 100,
+                    percent: bmi / 100,
                     backgroundColor: kgreyColor,
                     center: new Text(
                       bmi.toStringAsFixed(1),
