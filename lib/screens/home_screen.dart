@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:slimstats_bmi_calculator/const%20file/const.dart';
+import 'package:slimstats_bmi_calculator/screens/result_page.dart';
 import 'package:slimstats_bmi_calculator/widgets/appbar.dart';
 import 'package:slimstats_bmi_calculator/widgets/bottom_button.dart';
 import 'package:slimstats_bmi_calculator/widgets/gender.dart';
@@ -112,7 +113,7 @@ class HomeScreenState extends State<HomeScreen> {
                                 _currentAge++;
                               });
                             },
-                            minusOnPressed: (){
+                            minusOnPressed: () {
                               setState(() {
                                 _currentAge--;
                               });
@@ -164,7 +165,10 @@ class HomeScreenState extends State<HomeScreen> {
           BottomButton(
             buttonText: "CALCULATE",
             imagePath: "asset/icon/calculate.png",
-            ontap: () {},
+            ontap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Result()));
+            },
           ),
         ],
       ),

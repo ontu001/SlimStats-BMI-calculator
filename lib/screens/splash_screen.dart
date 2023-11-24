@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:slimstats_bmi_calculator/screens/home_screen.dart';
+import 'package:slimstats_bmi_calculator/screens/result_page.dart';
 
 class SplahScreen extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class SplahScreenState extends State<SplahScreen> {
   void initState() {
     Timer(Duration(seconds: 1), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          context, MaterialPageRoute(builder: (context) => Result()));
     });
     super.initState();
   }

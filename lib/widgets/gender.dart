@@ -19,8 +19,7 @@ class Gender extends StatelessWidget {
         ),
         Text(
           gender,
-          style: TextStyle(
-              color: kgreyColor, fontSize: 20.0, fontWeight: FontWeight.bold),
+          style: kcommonTExtStyle,
         )
       ],
     );
