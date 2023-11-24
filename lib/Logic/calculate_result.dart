@@ -63,10 +63,10 @@ class calculateBrain {
 
   String getConditionImage(){
     if(_bmi>= 24.9){
-      return 'asset/icon/exercise.png';
+      return 'asset/icon/sad.png';
     }
-    else if( _bmi<= 18.5){
-      return 'asset/icon/exercise.png';
+    else if( _bmi <= 18.5){
+      return 'asset/icon/sad.png';
 
     }
     else{

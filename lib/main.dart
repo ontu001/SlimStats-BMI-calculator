@@ -13,7 +13,6 @@ class slimStats extends StatelessWidget {
       title: "SlimStats BMI Calculator",
       debugShowCheckedModeBanner: false,
 
-
       //themeing========
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0XFF242335),

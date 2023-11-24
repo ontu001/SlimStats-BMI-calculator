@@ -48,7 +48,7 @@ class Result extends StatelessWidget {
                     condition,
                     style: kcommonTExtStyle,
                   ),
-                   Text("you are $age years old and Your height is $height your weight is $weight"),
+                   Text("You are $age years old and Your height is $height cm your weight is $weight kg"),
                   SizedBox(
                     height: 40.0,
                   ),

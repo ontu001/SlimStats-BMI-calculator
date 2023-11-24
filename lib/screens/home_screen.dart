@@ -21,7 +21,7 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   int _currentValue = 180;
-  int _currentWeight = 55;
+  int _currentWeight = 70;
   int _currentAge = 20;
   gEnder selectedGender = gEnder.none;
 
